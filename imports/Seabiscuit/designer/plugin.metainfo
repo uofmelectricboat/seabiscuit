@@ -1,6 +1,6 @@
 MetaInfo {
     Type {
-        name: "Seabiscuit.EventListSimulator"
+        name: "seabiscuit.EventListSimulator"
         icon: ":/qtquickplugin/images/item-icon16.png"
 
         Hints {

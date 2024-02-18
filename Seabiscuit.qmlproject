@@ -89,11 +89,11 @@ Project {
     importPaths: [ "imports", "asset_imports" ]
 
     /* Required for deployment */
-    targetDirectory: "/opt/Seabiscuit"
+    targetDirectory: "/opt/seabiscuit"
 
-    qdsVersion: "4.3"
+    qdsVersion: "4.1"
 
-    quickVersion: "6.5"
+    quickVersion: "6.2"
 
     /* If any modules the project imports require widgets (e.g. QtCharts), widgetApp must be true */
     widgetApp: true

@@ -1,5 +1,5 @@
 pragma Singleton
-import QtQuick 6.5
+import QtQuick 6.2
 import QtQuick.Studio.Application
 
 QtObject {
@@ -18,7 +18,7 @@ QtObject {
                                                   pixelSize: Qt.application.font.pixelSize * 1.6
                                               })
 
-    readonly property color backgroundColor: "#EAEAEA"
+    readonly property color backgroundColor: "#c2c2c2"
 
 
     property StudioApplication application: StudioApplication {
