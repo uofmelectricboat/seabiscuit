@@ -89,7 +89,7 @@ Project {
     importPaths: [ "imports", "asset_imports" ]
 
     /* Required for deployment */
-    targetDirectory: "/opt/seabiscuit"
+    targetDirectory: "/opt/seabiscuit2"
 
     qdsVersion: "4.1"
 
