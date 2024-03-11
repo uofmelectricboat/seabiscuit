@@ -15,6 +15,8 @@ Built with Qt/QML. UI built in Qt Design Studio. Backend built in Qt Creator.
 
 Download both Qt Creator and Qt Design Studio from the [Qt main website](https://www.qt.io/) (**Products** > **Qt Development Tools** > **Download Qt and Products** > **Qt Design Studio** > Get **Qt Design Studio**).
 
+Qt can be configured with Git by following the steps in [this guide](https://doc.qt.io/qtcreator/creator-vcs-git.html).
+
 ## Project Overview
 
 The driver display is a Windows application built with Qt (pronounced “cute”). It serves as the main dashboard inside the boat, displaying essential information for the driver to check with a glance. We use the following hardware components:
