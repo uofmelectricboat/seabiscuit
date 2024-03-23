@@ -17,9 +17,6 @@ qt_add_executable(seabiscuit2App
     src/main.cpp
     src/canbus/vectorcanbus.cpp
     src/canbus/vectorcanbus.hpp
-    src/app_environment.h
-    src/import_qml_components_plugins.h
-    src/import_qml_plugins.h
 )
 
 qt_add_resources(seabiscuit2App "configuration"
