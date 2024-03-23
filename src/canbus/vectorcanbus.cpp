@@ -68,5 +68,6 @@ void VectorCANBus::registerFrameHandler(int id, std::function<void(QByteArray)> 
     filter.format=QCanBusDevice::Filter::MatchBaseAndExtendedFormat;
     filter.type = QCanBusFrame::InvalidFrame;
     filterList.append(filter);
-    device->setConfigurationParameter(QCanBusDevice::RawFilterKey, QVariant::fromValue(filterList));
+    device->setConfigurationParameter(
+        QCanBusDevice::RawFilterKey, QVariant::fromValue(filterList));
 }
