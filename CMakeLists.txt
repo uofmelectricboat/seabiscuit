@@ -7,7 +7,7 @@ project(seabiscuit2App LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Qml Quick)
+find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui Qml Quick SerialBus)
 
 if (Qt6_VERSION VERSION_GREATER_EQUAL 6.3)
     qt_standard_project_setup()
@@ -30,6 +30,7 @@ target_link_libraries(seabiscuit2App PRIVATE
     Qt6::Gui
     Qt6::Qml
     Qt6::Quick
+    Qt6::SerialBus
 )
 
 if (BUILD_QDS_COMPONENTS)
