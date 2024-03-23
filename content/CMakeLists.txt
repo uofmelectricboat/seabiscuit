@@ -10,5 +10,4 @@ qt6_add_qml_module(content
         Screen01.ui.qml
     RESOURCES
         fonts/fonts.txt
-        SOURCES canbus.h canbus.cpp
 )
