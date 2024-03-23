@@ -1,5 +1,10 @@
 #include <QVariant>
+#include <QMetaObject>
 #include "vectorcanbus.hpp"
+
+VectorCANBus::VectorCANBus(QObject *parent) : QObject(parent) {
+    QMetaObject::invokeMethod(this, &VectorCANBus::connectToCAN, Qt::QueuedConnection);
+}
 
 VectorCANBus::~VectorCANBus() {
     qDebug() << "[VectorCANBus] disconnecting and deleting bus";
@@ -15,7 +20,7 @@ void VectorCANBus::connectToCAN(QString channel) {
     }
     qDebug() << "[VectorCANBus] 'vectorcan' plugin available";
 
-    // initialize device
+    // initialize bus device
     QString errorString;
     device = QCanBus::instance()->createDevice(
         QStringLiteral("vectorcan"), channel, &errorString);
