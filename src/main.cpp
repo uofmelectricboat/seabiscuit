@@ -8,7 +8,7 @@
 #include "import_qml_components_plugins.h"
 #include "import_qml_plugins.h"
 #include "canbus/vectorcanbus.hpp"
-#include "systemmetrics.h"
+#include "../systemmetrics.h"
 
 QObject *dashboard;
 
