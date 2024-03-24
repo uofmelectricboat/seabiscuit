@@ -9,6 +9,7 @@ Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on
 import QtQuick 6.2
 import QtQuick.Controls 6.2
 import seabiscuit2
+import "../main.qml" as Main
 
 Rectangle {
     width: Constants.width
@@ -21,7 +22,7 @@ Rectangle {
         y: 160
         width: 462
         height: 265
-        text: qsTr("000")
+        text: Main.app_VCU_SPEED_MPH.toString()
         font.pixelSize: 200
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignBottom

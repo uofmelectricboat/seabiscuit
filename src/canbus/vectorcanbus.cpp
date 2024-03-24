@@ -52,10 +52,10 @@ void VectorCANBus::processErrors() {
 void VectorCANBus::processReceivedFrames() {
     qDebug() << "[VectorCANBus] processing " << device->framesAvailable() << " frames";
     QList<QCanBusFrame> frames = device->readAllFrames();
-    for (auto frame : frames) {
+    for (const auto &frame : frames) {
         if (callbacks.find(frame.frameId()) == callbacks.end())
             continue;
-        for (auto callback : callbacks[frame.frameId()])
+        for (const auto &callback : callbacks[frame.frameId()])
             callback(frame.payload());
     }
 }

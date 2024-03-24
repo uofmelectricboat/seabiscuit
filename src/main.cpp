@@ -10,7 +10,7 @@
 #include "canbus/vectorcanbus.hpp"
 #include "../systemmetrics.h"
 
-QObject *dashboard;
+QObject *dashboard = nullptr;
 
 void callback(QByteArray canPayload);
 
@@ -49,14 +49,16 @@ int main(int argc, char *argv[]) {
 }
 
 void callback(QByteArray canPayload) {
-    if (dashboard == nullptr)
+    if (dashboard == nullptr) {
         return;
+    }
 
     // split CAN data into separate bytes
     unsigned char frameNumber = canPayload[0];
     unsigned char payload[CANMessageFrames][CANMessageBytes];
-    for (int i = 0; i < CANMessageBytes; i++)
+    for (int i = 0; i < CANMessageBytes; i++) {
         payload[frameNumber][i] = canPayload[i];
+    }
 
     // set properties
     switch (frameNumber) {
@@ -68,7 +70,9 @@ void callback(QByteArray canPayload) {
         dashboard->setProperty("app_VCU_BATTERY_POWER_KW", getValue(payload, VCU_BATTERY_POWER_KW));
         dashboard->setProperty("app_VCU_WATER_STATUS", getValue(payload, VCU_WATER_STATUS));
         dashboard->setProperty("app_VCU_COOLING_SYSTEM_STATUS", getValue(payload, VCU_COOLING_SYSTEM_STATUS));
+        break;
     case 1:
         dashboard->setProperty("app_VCU_ENGINE_SPEED_RPM", getValue(payload, VCU_ENGINE_SPEED_RPM));
+        break;
     }
 }
