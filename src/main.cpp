@@ -41,6 +41,7 @@ int main(int argc, char *argv[]) {
     dashboard = engine.rootObjects().first();
 
     VectorCANBus device("can2");
+    device.connectToCAN();
     device.registerFrameHandler(535888869, callback);
     device.registerFrameHandler(535888870, callback);
 

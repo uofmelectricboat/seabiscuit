@@ -15,20 +15,16 @@ VectorCANBus::~VectorCANBus() {
 
 void VectorCANBus::connectToCAN() {
     // check that QCanBus provides the VectorCAN plugin
-    if (!QCanBus::instance()->plugins().contains(QStringLiteral("vectorcan"))) {
-        qDebug() << "[VectorCANBus] 'vectorcan' plugin unavailable";
-        return;
-    }
+    if (!QCanBus::instance()->plugins().contains(QStringLiteral("vectorcan")))
+        qFatal() << "[VectorCANBus] 'vectorcan' plugin unavailable";
     qDebug() << "[VectorCANBus] 'vectorcan' plugin available";
 
     // initialize bus device
     QString errorString;
     device = QCanBus::instance()->createDevice(
         QStringLiteral("vectorcan"), channel, &errorString);
-    if (!device) {
-        qDebug() << "[VectorCANBus] error creating CAN device: " << errorString;
-        return;
-    }
+    if (!device)
+        qFatal() << "[VectorCANBus] error creating CAN device: " << errorString;
 
     // establish connections
     bool connectionStatus = false;
@@ -40,10 +36,8 @@ void VectorCANBus::connectToCAN() {
     connect(device, &QCanBusDevice::framesReceived,
             this, &VectorCANBus::processReceivedFrames);
     connectionStatus = device->connectDevice();
-    if (!connectionStatus) {
-        qDebug() << "[VectorCANBus] connection failed";
-        return;
-    }
+    if (!connectionStatus)
+        qFatal() << "[VectorCANBus] connection failed";
     qDebug() << "[VectorCANBus] connection succeeded";
 }
 
@@ -62,7 +56,7 @@ void VectorCANBus::processReceivedFrames() {
         if (callbacks.find(frame.frameId()) == callbacks.end())
             continue;
         for (auto callback : callbacks[frame.frameId()])
-            callback(frame.payload().data());
+            callback(frame.payload());
     }
 }
 
