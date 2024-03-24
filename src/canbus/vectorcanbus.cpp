@@ -2,7 +2,8 @@
 #include <QMetaObject>
 #include "vectorcanbus.hpp"
 
-VectorCANBus::VectorCANBus(QObject *parent) : QObject(parent) {
+VectorCANBus::VectorCANBus(QString _channel, QObject *parent) :
+    channel(_channel), QObject(parent) {
     QMetaObject::invokeMethod(this, &VectorCANBus::connectToCAN, Qt::QueuedConnection);
 }
 
@@ -12,7 +13,7 @@ VectorCANBus::~VectorCANBus() {
         device->disconnectDevice();
 }
 
-void VectorCANBus::connectToCAN(QString channel) {
+void VectorCANBus::connectToCAN() {
     // check that QCanBus provides the VectorCAN plugin
     if (!QCanBus::instance()->plugins().contains(QStringLiteral("vectorcan"))) {
         qDebug() << "[VectorCANBus] 'vectorcan' plugin unavailable";
@@ -61,7 +62,7 @@ void VectorCANBus::processReceivedFrames() {
         if (callbacks.find(frame.frameId()) == callbacks.end())
             continue;
         for (auto callback : callbacks[frame.frameId()])
-            callback(frame.payload());
+            callback(frame.payload().data());
     }
 }
 

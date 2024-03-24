@@ -17,6 +17,7 @@ qt_add_executable(seabiscuit2App
     src/main.cpp
     src/canbus/vectorcanbus.cpp
     src/canbus/vectorcanbus.hpp
+    systemmetrics.h systemmetrics.cpp
 )
 
 qt_add_resources(seabiscuit2App "configuration"
