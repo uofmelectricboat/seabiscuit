@@ -2,8 +2,7 @@
 #include <QMetaObject>
 #include "vectorcanbus.hpp"
 
-VectorCANBus::VectorCANBus(QString _channel, QObject *parent) :
-    channel(_channel), QObject(parent) {
+VectorCANBus::VectorCANBus(QString _channel, QObject *parent) : channel(_channel), QObject(parent) {
     QMetaObject::invokeMethod(this, &VectorCANBus::connectToCAN, Qt::QueuedConnection);
 }
 
@@ -21,20 +20,18 @@ void VectorCANBus::connectToCAN() {
 
     // initialize bus device
     QString errorString;
-    device = QCanBus::instance()->createDevice(
-        QStringLiteral("vectorcan"), channel, &errorString);
-    if (!device)
+    device = QCanBus::instance()->createDevice(QStringLiteral("vectorcan"), channel, &errorString);
+    if (device == NULL)
         qFatal() << "[VectorCANBus] error creating CAN device: " << errorString;
 
     // establish connections
     bool connectionStatus = false;
     qDebug() << "[VectorCANBus] connecting CAN interface: " << channel;
-    connect(device, &QCanBusDevice::errorOccurred,
-            this, &VectorCANBus::processErrors);
-    connect(device, &QCanBusDevice::stateChanged,
-            this, &VectorCANBus::processStateChange);
-    connect(device, &QCanBusDevice::framesReceived,
-            this, &VectorCANBus::processReceivedFrames);
+
+    connect(device, &QCanBusDevice::errorOccurred, this, &VectorCANBus::processErrors);
+    connect(device, &QCanBusDevice::stateChanged, this, &VectorCANBus::processStateChange);
+    connect(device, &QCanBusDevice::framesReceived, this, &VectorCANBus::processReceivedFrames);
+
     connectionStatus = device->connectDevice();
     if (!connectionStatus)
         qFatal() << "[VectorCANBus] connection failed";
@@ -68,6 +65,5 @@ void VectorCANBus::registerFrameHandler(int id, std::function<void(QByteArray)> 
     filter.format=QCanBusDevice::Filter::MatchBaseAndExtendedFormat;
     filter.type = QCanBusFrame::InvalidFrame;
     filterList.append(filter);
-    device->setConfigurationParameter(
-        QCanBusDevice::RawFilterKey, QVariant::fromValue(filterList));
+    device->setConfigurationParameter(QCanBusDevice::RawFilterKey, QVariant::fromValue(filterList));
 }
