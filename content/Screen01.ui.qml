@@ -46,7 +46,7 @@ Rectangle {
         y: 160
         width: 552
         height: 210
-        text: qsTr("0000")
+        text: Main.app_VCU_ENGINE_SPEED_RPM.toString()
         font.pixelSize: 180
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignBottom
@@ -86,7 +86,7 @@ Rectangle {
             y: 89
             width: 147
             height: 122
-            text: qsTr("100")
+            text: Main.app_VCU_BATTERY_CHARGE_PERCENTAGE.toString()
             font.pixelSize: 80
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -124,7 +124,7 @@ Rectangle {
             y: 89
             width: 147
             height: 122
-            text: qsTr("40")
+            text: Main.app_VCU_BATTERY_TEMPERATURE_DEGREES_C.toString()
             font.pixelSize: 80
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -162,7 +162,7 @@ Rectangle {
             y: 89
             width: 147
             height: 122
-            text: qsTr("40")
+            text: Main.app_VCU_MOTOR_TEMPERATURE_DEGREES_C.toString()
             font.pixelSize: 80
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -210,7 +210,7 @@ Rectangle {
             id: type4
             x: 8
             y: 8
-            text: qsTr("POWER")
+            text: Main.app_VCU_BATTERY_POWER_KW.toString()
             font.pixelSize: 30
         }
 
